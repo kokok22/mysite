@@ -1,0 +1,97 @@
+[mysite db만들기]
+1. # mysql -u root -p
+
+2. create database mysite;
+3. create user 'mysite'@'192.168.1.%' identified by 'mysite'
+4. grant all privileges on mysite.* to 'mysite'@'192.168.1.%'
+5. flush privileges
+
+6.
+
+=======================================
+- mysite 만들기 -
+
+1.PyCharm에서 mysite 프로젝트 만들기
+
+2.Django 설치
+  터미널에서
+  pip install django
+
+3.mysqlclient 설치
+  터미널에서
+  pip install mysqlclient
+
+4.장고 프로젝트 생성
+  터미널에서
+  django-admin startproject mysite
+
+5. 디렉토리 정리 (manage.py 밖으로 빼기)
+
+6. settings.py 설정
+
+    1) TIME_ZONE = 'Asia/Seoul'
+    2) DATABASES = {
+    	'default': {
+ 	        'ENGINE': 'django.db.backends.mysql',
+        	'NAME': 'webdb',
+        	'USER': 'webdb',
+        	'PASSWORD': 'webdb',
+        	'HOST': '127.0.0.1',
+        	'PORT': 3307
+    		}
+	}
+
+	# 프로젝트 당 db한개씩 사용한다.
+
+7. 기본적으로 장고 프로젝트가 관리하는 테이블을 생성(관리자 페이지)
+   터미널에서
+   python manage.py migrate
+
+
+8. 장고 프로젝트 관리 애플리케이션의 관리자 계정 생성하기
+터미널에서
+    python manage.py createsuperuser
+
+9. 지금까지 작업 내용 확인하기
+    1) 서버 시작하기
+        터미널에서
+        # python manage.py runserver 0.0.0.0:8888             [아무곳에서나 다 접속할 수 있도록 설정]
+
+    2) 브라우저에서
+        http://127.0.0.1:8888 로 접근
+        http://127.0.0.1:8888/admin 으로 하면 관리자 페이지 접속
+
+
+================================================================================================
+
+[장고 프로젝트의 Application 만들기]
+
+1.Application 들의 통합 templates 디렉토리 만들기
+    1) mysite(프로젝트 루트)
+                |------------ templates
+    2) setting.py 에 설정작업
+        TEMPLATES 변수에  'DIRS': [os.path.join(BASE_DIR, 'templates')] 세팅한다
+
+mysite
+    |------ main
+    |------ guestbook   (해오기)
+    |------ user
+    |------ board       (과제)
+
+
+
+1. main Application 만들기
+    1) 터미널에서
+        # python manage.py startapp helloworld
+
+    2) template/helloworld 디렉토리 생성성
+
+    3) Application 등록
+        settings.py의 INSTALLED_APPS 에 추가
+
+    --------------------------------------------------------------
+
+    4) url mapping (url.py)    url <---> view의 함수    [urls.py에 추가한다.]
+    5) view 함수에서 template에 data전달 및 render 결과 반환
+
+    --------------------------------------------------------------
