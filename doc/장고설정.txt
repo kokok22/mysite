@@ -79,12 +79,11 @@ mysite
     |------ board       (과제)
 
 
-
 1. main Application 만들기
     1) 터미널에서
-        # python manage.py startapp helloworld
+        # python manage.py startapp main
 
-    2) template/helloworld 디렉토리 생성성
+    2) template/main 디렉토리 생성성
 
     3) Application 등록
         settings.py의 INSTALLED_APPS 에 추가
