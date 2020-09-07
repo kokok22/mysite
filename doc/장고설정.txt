@@ -72,6 +72,14 @@
     2) setting.py 에 설정작업
         TEMPLATES 변수에  'DIRS': [os.path.join(BASE_DIR, 'templates')] 세팅한다
 
+
+    3) /assets/** URL을 /statics/** 경로로 매핑(settings.py)
+        STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'statics'),
+        )
+        STATIC_URL = '/assets/'
+
+
 mysite
     |------ main
     |------ guestbook   (해오기)

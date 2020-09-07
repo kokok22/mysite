@@ -16,12 +16,32 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import guestbook.views
 import main.views
+import user.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     # main
     path('main/', main.views.index),
+
+
+    # guestbook
+    path('guestbook/', guestbook.views.index),
+    path('guestbook/deleteform',guestbook.views.deleteform),
+    path('guestbook/add',guestbook.views.add),
+    path('guestbook/delete', guestbook.views.delete),
+
+
+    # user
+    path('user/joinform', user.views.joinform),
+    path('user/loginform', user.views.loginform),
+    path('user/updateform', user.views.updateform),
+    path('user/logout', user.views.logout),
+    path('user/joinsuccess', user.views.joinsuccess),
+    path('user/join', user.views.join),
+    path('user', user.views.login)
+
 
 ]
