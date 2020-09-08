@@ -6,8 +6,10 @@
 
 			{% block content %}
 			<div id="board">
-				<form class="board-form" method="post" action="">
+				<form class="board-form" method="post" action="/board/modify">
+					{% csrf_token %}
 					<table class="tbl-ex">
+						<input type = "hidden" name="no" value="{{request.GET.no}}">
 						<tr>
 							<th colspan="2">글수정</th>
 						</tr>
@@ -23,7 +25,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="">취소</a>
+						<a href="/board/view?no={{request.GET.no}}">취소</a>
 						<input type="submit" value="수정">
 					</div>
 				</form>				

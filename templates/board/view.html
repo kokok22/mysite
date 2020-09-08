@@ -18,14 +18,17 @@
 						<td class="label">내용</td>
 						<td>
 							<div class="view-content">
-								{{result.text}}
+								{{result.content | linebreaksbr}}
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="bottom">
 					<a href="/board">글목록</a>
-					<a href="/board/modify">글수정</a>
+					{% if result.user_no == request.session.authuser.no %}
+					<a href="/board/modifyform?no={{result.no}}">글수정</a>
+					{% endif %}
+					<a href="/board/writeform?no={{result.no}}">답글</a>
 				</div>
 			</div>
 			{% endblock %}
