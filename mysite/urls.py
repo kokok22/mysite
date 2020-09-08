@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import board.views
 import guestbook.views
 import main.views
 import user.views
@@ -41,7 +42,16 @@ urlpatterns = [
     path('user/logout', user.views.logout),
     path('user/joinsuccess', user.views.joinsuccess),
     path('user/join', user.views.join),
-    path('user', user.views.login)
+    path('user', user.views.login),
+    path('user/update', user.views.update),
+
+
+    # board
+    path('board/', board.views.index),
+    path('board/writeform', board.views.writeform),
+    path('board/write', board.views.write),
+    path('board/view', board.views.view),
+    path('board/modify', board.views.modify),
 
 
 ]
