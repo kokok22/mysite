@@ -2,7 +2,8 @@
 {% load mathfilters %}
 
 {% block css_link %}
-<link href="/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="/assets/css/board.css" rel="stylesheet" type="text/css" xmlns:href="http://www.w3.org/1999/xhtml"
+	  xmlns:href="http://www.w3.org/1999/xhtml" xmlns:href="http://www.w3.org/1999/xhtml">
 {% endblock%}
 
 		{% block content%}
@@ -23,7 +24,9 @@
 					{% for board in boardlist %}
 					<tr>
 						<td>{{boardlist | length | sub:forloop.counter | add:1}}</td>
-						<td style="text-align:left; padding-left:"><a href="/board/view?no={{board.no}}">{{  board.title  }}</a></td>
+						<td style="text-align:left; padding-left: {{board.depth | mul:10}}px">
+							<a href="/board/view?no={{board.no}}">{{ board.title  }}</a>
+						</td>
 						<td>{{board.name}}</td>
 						<td>{{board.view}}</td>
 						<td>{{board.reg_date}}</td>
