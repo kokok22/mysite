@@ -102,7 +102,7 @@ def getconn():
     return connect(
         user='mysite',
         password='mysite',
-        host='192.168.1.118',
+        host='192.168.1.108',
         port=3307,
         db='mysite',
         charset='utf8')

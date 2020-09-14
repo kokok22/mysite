@@ -25,7 +25,11 @@
 					<tr>
 						<td>{{boardlist | length | sub:forloop.counter | add:1}}</td>
 						<td style="text-align:left; padding-left: {{board.depth | mul:10}}px">
-							<a href="/board/view?no={{board.no}}">{{ board.title  }}</a>
+							{% if board.flag == 'T' %}
+								<a href="/board/view?no={{board.no}}">{{ board.title  }}</a>
+							{% else %}
+								<a style="color:gray">{{ board.title }}</a>
+							{% endif %}
 						</td>
 						<td>{{board.name}}</td>
 						<td>{{board.view}}</td>
@@ -42,17 +46,26 @@
 				<!-- pager 추가 -->
 				<div class="pager">
 					<ul>
+
 						<li><a href="/board?page={{range.0}}">◀</a></li>
 
 						{% for i in range %}
-							{% if page == i%}
+							{% if page == i %}
 							<li class="selected">{{page}}</li>
-							{% else%}
-							<li><a href="/board?page={{i}}">{{i}}</a></li>
+							{% elif i > size %}
+							<li><a style="color:gray">{{i}}</a></li>
+							{% else %}
+							<li><a style="color:black" href="/board?page={{i}}">{{i}}</a></li>
 							{% endif %}
 						{% endfor %}
 
+						{% if page == size %}
+						<a>▶</a>
+						{% elif range.4 > size %}
+						<li><a href="/board?page={{size}}">▶</a></li>
+						{% else %}
 						<li><a href="/board?page={{range.4}}">▶</a></li>
+						{% endif %}
 					</ul>
 				</div>					
 				<!-- pager 추가 -->

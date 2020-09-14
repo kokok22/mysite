@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+import math
 
 # Create your views here.
 import board.models
@@ -7,10 +8,10 @@ import board.models
 
 def index(request):
     results = board.models.fetchlist()
-
     page, bound = paging(request)
-
-    data = {'boardlist': results, 'page': page, 'range': bound}
+    size = math.ceil(len(results)/5)
+    idx = 5*(page-1)
+    data = {'boardlist': results[idx:idx+5], 'page': page, 'range': bound,'size':size}
 
     return render(request, 'board/list.html',data)
 

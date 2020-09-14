@@ -16,7 +16,8 @@ def fetchlist():
                 b.user_no,
                 b.view,
                 date_format(b.reg_date, '%Y-%m-%d %h:%i:%s') as reg_date,
-                b.depth
+                b.depth,
+                b.flag
         from
             board as b, user as u
         where
@@ -166,7 +167,7 @@ def getconn():
     return connect(
         user='mysite',
         password='mysite',
-        host='192.168.1.118',
+        host='192.168.1.108',
         port=3307,
         db='mysite',
         charset='utf8')
