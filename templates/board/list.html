@@ -26,7 +26,12 @@
 						<td>{{boardlist | length | sub:forloop.counter | add:1}}</td>
 						<td style="text-align:left; padding-left: {{board.depth | mul:10}}px">
 							{% if board.flag == 'T' %}
-								<a href="/board/view?no={{board.no}}">{{ board.title  }}</a>
+								<a href="/board/view?no={{board.no}}">
+									{% if board.depth > 1 %}
+									<img src="/assets/images/reply.png">
+									{% endif %}
+									{{ board.title  }}
+								</a>
 							{% else %}
 								<a style="color:gray">{{ board.title }}</a>
 							{% endif %}

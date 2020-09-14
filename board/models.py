@@ -71,7 +71,7 @@ def insert(title, content, user_no,g_no,o_no,depth):
     sql = '''
         insert into
             board
-        values(null, %s, %s, '0', now(), %s,%s,%s,%s)
+        values(null, %s, %s, '0', now(), %s,%s,%s,%s, 'T')
     '''
 
     cursor.execute(sql, (title, content, g_no, o_no, depth, [user_no]))
@@ -86,8 +86,10 @@ def delete(no):
     cursor = conn.cursor(DictCursor)
 
     sql = '''
-            delete from
+            update
                 board
+            set
+                flag = 'F'
             where
                 no = %s
         '''
